@@ -1,18 +1,24 @@
 import React from "react";
 
-function RenderAll({ filter, persons }) {
+function RenderAll({ filter, persons, handleDelete }) {
   return (
     <div>
       {filter
         ? filter.map((person) => (
-            <p key={person.name}>
-              {person.name} {person.number}
-            </p>
+            <div key={person.name}>
+              <p>
+                {person.name} {person.number}
+              </p>
+              <button onClick={() => handleDelete(person.id)}>Delete</button>
+            </div>
           ))
         : persons.map((person) => (
-            <p key={person.name}>
-              {person.name} {person.number}
-            </p>
+            <div key={person.name}>
+              <p>
+                {person.name} {person.number}
+              </p>
+              <button onClick={() => handleDelete(person.id)}>Delete</button>
+            </div>
           ))}
     </div>
   );
