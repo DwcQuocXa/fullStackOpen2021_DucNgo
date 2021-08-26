@@ -2,4 +2,4 @@ GET http://localhost:3001/api/persons/
 
 DELETE http://localhost:3001/api/persons/2
 
-POST http://localhost:3001/api/persons/
+POST http://localhost:3001/api/persons/2
