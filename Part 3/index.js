@@ -60,15 +60,14 @@ app.post("/api/persons", (request, response) => {
     return response.status(400).json({ error: "name or number missing" });
   }
 
-  const duplicatedName = persons.find((person) => person.name === body.name);
-  if (duplicatedName) {
-    return response.status(400).json({ error: "name must be unique" });
-  }
-
-  const newPerson = new persons({
+  const newPerson = new Person({
     name: body.name,
     number: body.number,
     id: generateId(),
+  });
+
+  person.save().then((savePerson) => {
+    response.json(savePerson);
   });
 });
 
