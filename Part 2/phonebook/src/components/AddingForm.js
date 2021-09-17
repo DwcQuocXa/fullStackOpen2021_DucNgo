@@ -8,7 +8,7 @@ function AddingForm({ addPerson, newPerson, handleAdd }) {
         name: <input value={newPerson.name} name="name" onChange={handleAdd} />
       </div>
       <div>
-        number:{" "}
+        number:
         <input value={newPerson.number} name="number" onChange={handleAdd} />
       </div>
       <div>

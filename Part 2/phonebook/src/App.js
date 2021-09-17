@@ -6,9 +6,7 @@ import dataFunction from "./services/dataFunction";
 import Notification from "./components/Notification";
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: "Arto Hellas", number: "84301298341204" },
-  ]);
+  const [persons, setPersons] = useState([]);
   const [newPerson, setNewPerson] = useState({ name: "", number: "" });
   const [filter, setFilter] = useState("");
   const [message, setMessage] = useState(null);
@@ -92,15 +90,35 @@ const App = () => {
           timer();
           setMessageType("noti");
         } else {
-          dataFunction
-            .create(personObject)
-            .then(
-              (returnedPerson) => setPersons(persons.concat(returnedPerson)),
-              setMessage(`Added ${personObject.name}`),
-              timer(),
-              setNewPerson({ name: "", number: "" }),
-              setMessageType("noti")
+          if (personObject.name.length < 3) {
+            setMessage(
+              `Person validation failed: name: Path name (${personObject.name}) is shorter than the minimum allowed length (3).`
             );
+            timer();
+            setMessageType("error");
+          } else if (personObject.number.length < 3) {
+            setMessage(
+              `Person validation failed: number: Path number (${personObject.number}) is shorter than the minimum allowed length (8).`
+            );
+            timer();
+            setMessageType("error");
+          } else {
+            dataFunction
+              .create(personObject)
+              .then(
+                (returnedPerson) => setPersons(persons.concat(returnedPerson)),
+                setMessage(`Added ${personObject.name}`),
+                timer(),
+                setNewPerson({ name: "", number: "" }),
+                setMessageType("noti")
+              )
+              .catch((error) => {
+                console.log(error.response.data.error.message);
+                setMessage(`Something went wrong`);
+                timer();
+                setMessageType("error");
+              });
+          }
         }
       }
     } else {
