@@ -10,6 +10,7 @@ if (process.argv.length < 3) {
 const password = process.argv[2];
 let name = process.argv[3];
 let number = process.argv[4];
+let abc = "bac";
 
 const url = `mongodb+srv://luongkill:${password}@cluster0.yqhly.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 mongoose.connect(url);
