@@ -1,0 +1,12 @@
+POST http://localhost:3003/api/blogs/
+Content-Type: application/json
+
+{
+    "title": "The power of promises",
+    "url": "https://hustlebloggercom.wordpress.com/2021/09/22/suc-manh-cua-loi-hua/#more-1424",
+    "likes": 35,
+    "author": "Hoang Long"
+}
+
+###
+GET  http://localhost:3003/api/blogs/
