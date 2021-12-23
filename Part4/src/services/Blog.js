@@ -4,12 +4,23 @@ const Blog = require("../models/blogSchema");
 const create = async (blog) => {
   return blog.save();
 };
+
 const findAll = async () => {
   return Blog.find({}).sort({ name: 1 });
 };
 
-// export default {
-//   create,
-//   findAll,
-// };
-module.exports = { findAll, create };
+const findById = async (blogId) => {
+  return await Blog.findById(blogId);
+};
+
+const update = async (blogId, update) => {
+  return await Blog.findByIdAndUpdate(blogId, update, {
+    new: true,
+  });
+};
+
+const deleteBlog = async (blogId) => {
+  return Blog.findByIdAndDelete(blogId);
+};
+
+module.exports = { findAll, create, findById, update, deleteBlog };

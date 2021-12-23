@@ -70,6 +70,35 @@ test("verify if title and url property is missing", async () => {
   expect(response.body).toHaveLength(helper.initialBlogs.length);
 });
 
+test("delete a blog", async () => {
+  const blogList = await helper.blogsInDb();
+  await api.delete(`/api/blogs/${blogList[0].id}`).expect(200);
+  const blogListAfter = await helper.blogsInDb();
+  expect(blogListAfter).toHaveLength(helper.initialBlogs.length - 1);
+});
+
+test("update likes", async () => {
+  const blogList = await helper.blogsInDb();
+  console.log("blogList", blogList);
+  const updateBlog = {
+    title: "Go To Statement Considered Harmful",
+    author: "Edsger W. Dijkstra",
+    url: "http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html",
+    likes: 2205,
+  };
+  await api
+    .put(`/api/blogs/${blogList[0].id}`)
+    .send(updateBlog)
+    .expect(200)
+    .expect("Content-Type", /application\/json/);
+  const response = await api.get("/api/blogs");
+  const updatedBlog = response.body.find(
+    (blog) => blog.title === "Go To Statement Considered Harmful"
+  );
+  console.log("update test", updatedBlog);
+  expect(updatedBlog.likes).toEqual(2205);
+});
+
 afterAll(() => {
   mongoose.connection.close();
 });

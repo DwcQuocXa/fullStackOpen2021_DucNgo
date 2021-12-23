@@ -33,4 +33,30 @@ const findAll = async (req, res, next) => {
   }
 };
 
-module.exports = { findAll, createBlog };
+const findById = async (req, res, next) => {
+  try {
+    res.json(await BlogService.findById(req.params.blogId));
+  } catch (error) {
+    next(error);
+  }
+};
+
+const updateBlog = async (req, res, next) => {
+  try {
+    const update = req.body;
+    const blogId = req.params.blogId;
+    res.json(await BlogService.update(blogId, update));
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteBlog = async (req, res, next) => {
+  try {
+    res.json(await BlogService.deleteBlog(req.params.blogId));
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { findAll, createBlog, findById, updateBlog, deleteBlog };
