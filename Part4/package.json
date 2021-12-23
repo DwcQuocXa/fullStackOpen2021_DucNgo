@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "node ./src/index.js",
-    "dev": "nodemon ./src/index.js",
-    "test": "jest --verbose",
+    "start": "SET NODE_ENV=production & node index.js",
+    "dev": "SET NODE_ENV=development & nodemon index.js",
+    "test": "SET NODE_ENV=test & jest --verbose --runInBand",
     "build:ui": "del -rf build && cd ../Part 2/phonebook/ && npm run build --prod && cp -r build /Users/Ngo Gia Duc/Desktop/học vãi lồn/FullStackOpen2021/Part 3",
     "deploy": "git push heroku main",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",

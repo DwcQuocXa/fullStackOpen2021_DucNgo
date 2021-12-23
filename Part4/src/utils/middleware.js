@@ -1,4 +1,5 @@
-import logger from "./logger.js";
+//import logger from "./logger.js";
+const logger = require("./logger");
 
 const requestLogger = (request, response, next) => {
   logger.info("Method:", request.method);
@@ -24,7 +25,13 @@ const errorHandler = (error, request, response, next) => {
   next(error);
 };
 
-export default {
+// export default {
+//   requestLogger,
+//   unknownEndpoint,
+//   errorHandler,
+// };
+
+module.exports = {
   requestLogger,
   unknownEndpoint,
   errorHandler,

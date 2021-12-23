@@ -1,11 +1,20 @@
-import express from "express";
-import cors from "cors";
-import mongoose from "mongoose";
+// import express from "express";
+// import cors from "cors";
+// import mongoose from "mongoose";
 
-import config from "./utils/config.js";
-import logger from "./utils/logger.js";
-import middleware from "./utils/middleware.js";
-import blogRouter from "./routes/Blog.js";
+// import config from "./utils/config.js";
+// import logger from "./utils/logger.js";
+// import middleware from "./utils/middleware.js";
+// import blogRouter from "./routes/Blog.js";
+
+const mongoose = require("mongoose");
+const express = require("express");
+const cors = require("cors");
+
+const config = require("./utils/config");
+const logger = require("./utils/logger");
+const middleware = require("./utils/middleware");
+const blogRouter = require("./routes/Blog");
 
 const app = express();
 
@@ -42,4 +51,5 @@ app.use("/api/blogs", blogRouter);
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
 
-export default app;
+//export default app;
+module.exports = app;

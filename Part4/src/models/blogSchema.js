@@ -1,10 +1,20 @@
-import mongoose from "mongoose";
+//import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const blogSchema = new mongoose.Schema({
-  title: String,
-  author: String,
-  url: String,
-  likes: Number,
+  author: {
+    type: String,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  url: {
+    type: String,
+    required: true,
+  },
+  likes: { type: Number, default: 0 },
 });
 
 blogSchema.set("toJSON", {
@@ -15,4 +25,4 @@ blogSchema.set("toJSON", {
   },
 });
 
-export default mongoose.model("Blog", blogSchema);
+module.exports = mongoose.model("Blog", blogSchema);

@@ -1,8 +1,11 @@
-import Blog from "../models/blogSchema.js";
-import BlogService from "../services/Blog.js";
-import logger from "../utils/logger.js";
+// import Blog from "../models/blogSchema.js";
+//import BlogService from "../services/Blog.js";
+// import logger from "../utils/logger.js";
+const Blog = require("../models/blogSchema");
+const BlogService = require("../services/Blog");
+const logger = require("../utils/logger");
 
-export const createBlog = async (req, res, next) => {
+const createBlog = async (req, res, next) => {
   try {
     const { title, url, likes, author } = req.body;
 
@@ -22,10 +25,12 @@ export const createBlog = async (req, res, next) => {
   }
 };
 
-export const findAll = async (req, res, next) => {
+const findAll = async (req, res, next) => {
   try {
     res.json(await BlogService.findAll());
   } catch (error) {
     next(error);
   }
 };
+
+module.exports = { findAll, createBlog };

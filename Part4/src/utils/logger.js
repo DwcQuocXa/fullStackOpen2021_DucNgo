@@ -6,7 +6,11 @@ const error = (...params) => {
   console.error(...params);
 };
 
-export default {
+// export default {
+//   info,
+//   error,
+// };
+module.exports = {
   info,
   error,
 };
