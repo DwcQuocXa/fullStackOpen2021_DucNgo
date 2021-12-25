@@ -6,7 +6,7 @@ const create = async (blog) => {
 };
 
 const findAll = async () => {
-  return Blog.find({}).sort({ name: 1 });
+  return await Blog.find({}).populate("user", { username: 1, name: 1 });
 };
 
 const findById = async (blogId) => {

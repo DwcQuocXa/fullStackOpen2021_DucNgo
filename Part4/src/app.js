@@ -15,21 +15,14 @@ const config = require("./utils/config");
 const logger = require("./utils/logger");
 const middleware = require("./utils/middleware");
 const blogRouter = require("./routes/Blog");
+const userRouter = require("./routes/User");
 
 const app = express();
 
 logger.info("connecting to", config.MONGODB_URI);
 
 mongoose
-  .connect(
-    config.MONGODB_URI
-    //     , {
-    //     useNewUrlParser: true,
-    //     useUnifiedTopology: true,
-    //     useFindAndModify: false,
-    //     useCreateIndex: true,
-    //   }
-  )
+  .connect(config.MONGODB_URI)
   .then(() => {
     logger.info("connected to MongoDB");
   })
@@ -47,6 +40,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/blogs", blogRouter);
+app.use("/api/users", userRouter);
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);

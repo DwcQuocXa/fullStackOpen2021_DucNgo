@@ -2,11 +2,26 @@ POST http://localhost:3003/api/blogs/
 Content-Type: application/json
 
 {
-    "title": "The power of promises",
+    "title": "The power of writing blogs",
     "url": "https://hustlebloggercom.wordpress.com/2021/09/22/suc-manh-cua-loi-hua/#more-1424",
     "likes": 35,
-    "author": "Hoang Long"
+    "author": "Hoang Long",
+    "userId": "61c5f1c25b6158387e67efca"
 }
 
 ###
 GET  http://localhost:3003/api/blogs/
+
+###
+POST http://localhost:3003/api/users/
+Content-Type: application/json
+
+{
+    "username": "luongkill12345678",
+    "name": "Nguyen Pham",
+    "password": "luong12345",
+    "blogs": ["61c4df4826319b3f0d1dbafa", "61c5e34a480692c91eb2ce93"]
+}
+
+###
+GET  http://localhost:3003/api/users/

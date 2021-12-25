@@ -4,10 +4,12 @@
 const Blog = require("../models/blogSchema");
 const BlogService = require("../services/Blog");
 const logger = require("../utils/logger");
+const User = require("../models/userSchema");
 
 const createBlog = async (req, res, next) => {
   try {
-    const { title, url, likes, author } = req.body;
+    const { title, url, likes, author, userId } = req.body;
+    const user = await User.findById(userId);
 
     logger.info(title);
 
@@ -16,10 +18,18 @@ const createBlog = async (req, res, next) => {
       url,
       likes,
       author,
+      user: user._id,
     });
 
-    await BlogService.create(newBlog);
-    res.json(newBlog);
+    // await BlogService.create(newBlog);
+    // res.json(newBlog);
+
+    const savedBlog = await BlogService.create(newBlog);
+
+    user.blogs = user.blogs.concat(savedBlog._id);
+    await user.save();
+
+    res.json(savedBlog);
   } catch (error) {
     next(error);
   }
