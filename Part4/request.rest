@@ -6,7 +6,7 @@ Content-Type: application/json
     "url": "https://hustlebloggercom.wordpress.com/2021/09/22/suc-manh-cua-loi-hua/#more-1424",
     "likes": 35,
     "author": "Hoang Long",
-    "userId": "61c5f1c25b6158387e67efca"
+    "userId": "61c852d3a7f131403ab85062"
 }
 
 ###
@@ -17,10 +17,10 @@ POST http://localhost:3003/api/users/
 Content-Type: application/json
 
 {
-    "username": "luongkill12345678",
+    "username": "luongkill1234567890",
     "name": "Nguyen Pham",
     "password": "luong12345",
-    "blogs": ["61c4df4826319b3f0d1dbafa", "61c5e34a480692c91eb2ce93"]
+    "blogs": []
 }
 
 ###

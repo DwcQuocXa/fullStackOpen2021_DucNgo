@@ -24,7 +24,8 @@ const createUser = async (req, res, next) => {
 
 const findAll = async (req, res, next) => {
   try {
-    res.json(await User.find({}).populate("blogs", { title: 1, author: 1 }));
+    // res.json(await User.find({}).populate("blogs", { title: 1, author: 1 }));
+    res.json(await User.find({}));
   } catch (error) {
     next(error);
   }
