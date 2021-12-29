@@ -4,6 +4,9 @@ import blogsService from "./services/blogs";
 import loginService from "./services/login";
 import BlogForm from "./components/BlogForm";
 import Notification from "./components/Notification";
+import LoginForm from "./components/LoginForm";
+import ToggleTable from "./components/ToggleTable";
+
 const App = () => {
   const [inputBlog, setInputBlog] = useState({});
   const [blogs, setBlogs] = useState([]);
@@ -34,7 +37,7 @@ const App = () => {
         password,
       });
       console.log(user);
-      window.localStorage.setItem("C", JSON.stringify(user));
+      window.localStorage.setItem("user", JSON.stringify(user));
       blogsService.setToken(user.token);
       setUser(user);
       setUsername("");
@@ -72,30 +75,7 @@ const App = () => {
       setMessage({ type: "", content: "" });
     }, 3000);
   };
-  const loginForm = () => (
-    <form onSubmit={handleLogin}>
-      <div>
-        username
-        <input
-          type="text"
-          value={username}
-          name="Username"
-          onChange={({ target }) => setUsername(target.value)}
-        />
-      </div>
-      <div>
-        {" "}
-        password
-        <input
-          type="password"
-          value={password}
-          name="Password"
-          onChange={({ target }) => setPassword(target.value)}
-        />
-      </div>
-      <button type="submit">login</button>
-    </form>
-  );
+
   const logout = () => {
     setUser(null);
     setMessage({ type: "noti", content: "Log out" });
@@ -106,22 +86,55 @@ const App = () => {
     window.localStorage.removeItem("user");
   };
 
+  const handleAddLikes = (blog) => {
+    if (blog) {
+      const newObject = blog;
+      newObject.likes++;
+      blogsService
+        .update(blog.id, newObject)
+        .then(() => blogsService.getAll().then((blogs) => setBlogs(blogs)));
+    }
+  };
+
+  const handleDelete = (blog) => {
+    if (blog) {
+      window.confirm("Do you want to delete this blog?") &&
+        blogsService
+          .deleteBlog(blog.id)
+          .then(() => blogsService.getAll().then((blogs) => setBlogs(blogs)));
+    }
+  };
+
   return (
     <div>
       <h2>Blogs</h2>
       <Notification message={message} />
-      {user === null ? (
-        loginForm()
+      {!user ? (
+        <ToggleTable buttonLable="login">
+          <LoginForm
+            username={username}
+            password={password}
+            handleUsernameChange={({ target }) => setUsername(target.value)}
+            handlePasswordChange={({ target }) => setPassword(target.value)}
+            handleSubmit={handleLogin}
+          />
+        </ToggleTable>
       ) : (
         <div>
           <h3>{user.username} logged in</h3>
           <button onClick={logout}>Logout</button>
-          <BlogForm
-            addBlog={addBlog}
-            handleChange={handleChange}
+          <ToggleTable buttonLable="Create new blog">
+            <BlogForm
+              addBlog={addBlog}
+              handleChange={handleChange}
+              blogs={blogs}
+            />
+          </ToggleTable>
+          <Blog
             blogs={blogs}
+            handleAddLikes={handleAddLikes}
+            handleDelete={handleDelete}
           />
-          <Blog blogs={blogs} />
         </div>
       )}
     </div>

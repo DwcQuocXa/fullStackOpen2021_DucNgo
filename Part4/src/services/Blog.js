@@ -20,7 +20,7 @@ const update = async (blogId, update) => {
 };
 
 const deleteBlog = async (blogId) => {
-  return Blog.findByIdAndDelete(blogId);
+  return Blog.findByIdAndRemove(blogId);
 };
 
 module.exports = { findAll, create, findById, update, deleteBlog };

@@ -80,17 +80,20 @@ const updateBlog = async (req, res, next) => {
 const deleteBlog = async (req, res, next) => {
   try {
     if (!req.token || !req.decodedToken) {
-      return response.status(401).json({ error: "missing or invalid token" });
+      return res.status(401).json({ error: "missing or invalid token" });
     }
 
     const blog = await Blog.findById(req.params.id);
     const user = req.user;
 
-    if (blog.user.toString() !== user._id.toString()) {
-      response.status(400).end();
-    }
+    console.log("blog", blog);
+    console.log("user", user);
 
-    res.json(await BlogService.deleteBlog(req.params.id));
+    if (blog.user.toString() !== user._id.toString()) {
+      res.status(400).end();
+    }
+    await BlogService.deleteBlog(req.params.id);
+    res.status(204).end();
   } catch (error) {
     next(error);
   }

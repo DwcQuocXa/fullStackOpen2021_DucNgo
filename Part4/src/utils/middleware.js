@@ -66,7 +66,7 @@ const userExtractor = async (req, res, next) => {
   }
 
   try {
-    const decodedToken = jwt.verify(req.token, process.env.SECRET);
+    const decodedToken = jwt.verify(req.token, config.SECRET);
     req.user = await User.findById(decodedToken.id);
   } catch (error) {
     req.user = null;
