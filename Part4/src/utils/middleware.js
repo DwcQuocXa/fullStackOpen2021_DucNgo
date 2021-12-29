@@ -1,6 +1,8 @@
 //import logger from "./logger.js";
 const logger = require("./logger");
 const User = require("../models/userSchema");
+const config = require("../utils/config");
+const jwt = require("jsonwebtoken");
 
 const requestLogger = (request, response, next) => {
   logger.info("Method:", request.method);
@@ -37,14 +39,15 @@ const errorHandler = (error, request, response, next) => {
 const tokenExtractor = (req, res, next) => {
   const authorization = req.get("authorization");
 
-  if (authorization && authorization.toLowerCase().startsWith("bearer ")) {
+  if (authorization && authorization.toLowerCase().startsWith("bearer")) {
     req.token = authorization.substring(7);
   } else {
     req.token = null;
   }
 
   try {
-    const decodedToken = jwt.verify(req.token, process.env.SECRET);
+    const decodedToken = jwt.verify(req.token, config.SECRET);
+    console.log("secret", config.SECRET);
     req.decodedToken = decodedToken;
   } catch (error) {
     req.decodedToken = null;

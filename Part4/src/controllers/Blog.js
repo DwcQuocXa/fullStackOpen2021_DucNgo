@@ -18,11 +18,12 @@ const getTokenFrom = (request) => {
 
 const createBlog = async (req, res, next) => {
   try {
-    const { title, url, likes, author, userId } = req.body;
+    const { title, url, likes, author } = req.body;
 
-    const token = getTokenFrom(req);
-    const decodedToken = jwt.verify(token, config.SECRET);
-    console.log(decodedToken);
+    const token = req.token;
+    const decodedToken = req.decodedToken;
+    console.log("token", token);
+    console.log("decodedToken", decodedToken);
 
     if (!token || !decodedToken.id) {
       return response.status(401).json({ error: "token missing or invalid" });
