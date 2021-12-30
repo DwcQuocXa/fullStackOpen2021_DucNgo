@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function Notification({ message }) {
   if (!message.content && !message.type) {
@@ -6,7 +6,7 @@ export default function Notification({ message }) {
   }
   return (
     <div>
-      <p className={message.type === "error" ? "error" : "noti"}>
+      <p className={message.type === 'error' ? 'error' : 'noti'}>
         {message.content}
       </p>
     </div>

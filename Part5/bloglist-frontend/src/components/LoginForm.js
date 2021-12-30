@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function LoginForm({
   handleSubmit,
@@ -13,22 +13,22 @@ export default function LoginForm({
         <div>
           username
           <input
-            type="text"
+            type='text'
             value={username}
-            name="Username"
+            name='Username'
             onChange={handleUsernameChange}
           />
         </div>
         <div>
           password
           <input
-            type="password"
+            type='password'
             value={password}
-            name="Password"
+            name='Password'
             onChange={handlePasswordChange}
           />
         </div>
-        <button type="submit">login</button>
+        <button type='submit'>login</button>
       </form>
     </div>
   );
