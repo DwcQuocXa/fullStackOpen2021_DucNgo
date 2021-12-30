@@ -14,11 +14,13 @@ function BlogDetail({ blog, handleAddLikes, handleDelete }) {
 
   return (
     <div style={blogStyle}>
-      {blog.title} {blog.author}
+      <div className='blogInfo'>
+        {blog.title} {blog.author}
+      </div>
       <button onClick={() => setVisible(!visible)}>
         {visible ? 'Hide' : 'View'}
       </button>
-      <div style={showWhenInVisible}>
+      <div style={showWhenInVisible} className='blogInfoExpand'>
         <p>{blog.url}</p>
         <span>{blog.likes}</span>
         <button onClick={() => handleAddLikes(blog)}>like</button>

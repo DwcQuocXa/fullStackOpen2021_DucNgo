@@ -8,7 +8,6 @@ import LoginForm from './components/LoginForm';
 import ToggleTable from './components/ToggleTable';
 
 const App = () => {
-  const [inputBlog, setInputBlog] = useState({});
   const [blogs, setBlogs] = useState([]);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -53,24 +52,18 @@ const App = () => {
       }, 3000);
     }
   };
-  const handleChange = (event) => {
-    setInputBlog({ ...inputBlog, [event.target.name]: event.target.value });
-  };
 
-  const addBlog = (event) => {
-    event.preventDefault();
-    const newBlog = {
-      title: inputBlog.title,
-      author: inputBlog.author,
-      url: inputBlog.url,
-      likes: inputBlog.likes,
-    };
-    blogsService.create(newBlog).then((newBlog) => {
-      setBlogs(blogs.concat(newBlog));
-      setInputBlog('');
-    });
-    event.target.reset();
-    setMessage({ type: 'noti', content: 'new blog added' });
+  const addBlog = (newBlog) => {
+    blogsService
+      .create(newBlog)
+      .then((newBlog) => {
+        setBlogs(blogs.concat(newBlog));
+        setMessage({ type: 'noti', content: 'new blog added' });
+      })
+      .catch((error) =>
+        setMessage({ type: 'error', content: `invalid input ${error}` })
+      );
+
     setTimeout(() => {
       setMessage({ type: '', content: '' });
     }, 3000);
@@ -124,11 +117,7 @@ const App = () => {
           <h3>{user.username} logged in</h3>
           <button onClick={logout}>Logout</button>
           <ToggleTable buttonLable='Create new blog'>
-            <BlogForm
-              addBlog={addBlog}
-              handleChange={handleChange}
-              blogs={blogs}
-            />
+            <BlogForm addBlog={addBlog} />
           </ToggleTable>
           <Blog
             blogs={blogs}
