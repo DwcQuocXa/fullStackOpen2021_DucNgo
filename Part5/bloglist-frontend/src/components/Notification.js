@@ -5,7 +5,7 @@ export default function Notification({ message }) {
     return null;
   }
   return (
-    <div>
+    <div className='error'>
       <p className={message.type === 'error' ? 'error' : 'noti'}>
         {message.content}
       </p>

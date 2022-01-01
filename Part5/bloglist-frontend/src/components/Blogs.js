@@ -2,7 +2,7 @@ import React from 'react';
 import BlogDetail from './BlogDetail';
 import PropTypes from 'prop-types';
 
-const Blogs = ({ blogs, handleAddLikes, handleDelete }) => {
+const Blogs = ({ blogs, handleAddLikes, handleDelete, user }) => {
   blogs.sort((a, b) => (a.likes > b.likes ? 1 : b.likes > a.likes ? -1 : 0));
   return (
     <div>
@@ -12,6 +12,7 @@ const Blogs = ({ blogs, handleAddLikes, handleDelete }) => {
             blog={blog}
             handleAddLikes={handleAddLikes}
             handleDelete={handleDelete}
+            user={user}
           />
         </p>
       ))}

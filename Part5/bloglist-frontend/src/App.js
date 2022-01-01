@@ -123,6 +123,7 @@ const App = () => {
             blogs={blogs}
             handleAddLikes={handleAddLikes}
             handleDelete={handleDelete}
+            user={user}
           />
         </div>
       )}

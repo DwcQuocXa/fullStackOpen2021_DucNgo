@@ -30,7 +30,12 @@ const BlogForm = ({ addBlog }) => {
       <form onSubmit={handleSumbitBlog}>
         <div>
           title:
-          <input onChange={handleChange} value={inputBlog.title} name='title' />
+          <input
+            onChange={handleChange}
+            value={inputBlog.title}
+            name='title'
+            id='title'
+          />
         </div>
         <div>
           author:
@@ -38,15 +43,26 @@ const BlogForm = ({ addBlog }) => {
             onChange={handleChange}
             value={inputBlog.author}
             name='author'
+            id='author'
           />
         </div>
         <div>
           url:
-          <input onChange={handleChange} value={inputBlog.url} name='url' />
+          <input
+            onChange={handleChange}
+            value={inputBlog.url}
+            name='url'
+            id='url'
+          />
         </div>
         <div>
           likes:
-          <input onChange={handleChange} value={inputBlog.likes} name='likes' />
+          <input
+            onChange={handleChange}
+            value={inputBlog.likes}
+            name='likes'
+            id='likes'
+          />
         </div>
         <div>
           <button type='submit'>add</button>

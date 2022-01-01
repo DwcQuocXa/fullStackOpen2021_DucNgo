@@ -10,7 +10,8 @@
     "deploy": "git push heroku main",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
     "logs:prod": "heroku logs --tail",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "start:test": "cross-env NODE_ENV=test node src/index.js"
   },
   "dependencies": {
     "@babel/core": "^7.16.5",
@@ -27,6 +28,7 @@
     "nodemon": "^2.0.15"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.25.2",
     "jest": "^27.4.4",
