@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { createNewAnecdote } from '../reducers/anecdoteReducer';
+import { addNoti } from '../reducers/notiReducer';
 
 function AnecdoteForm() {
   const dispatch = useDispatch();
@@ -9,6 +10,7 @@ function AnecdoteForm() {
     const content = event.target.note.value;
     event.target.note.value = '';
     dispatch(createNewAnecdote(content));
+    dispatch(addNoti('New anecdote was add'));
   };
   return (
     <div>
