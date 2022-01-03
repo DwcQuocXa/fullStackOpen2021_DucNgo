@@ -3,14 +3,22 @@ const notiReducer = (state = '', action) => {
     return (state = '');
   }
   if (action.type === 'NOTIFICATION') {
-    return (state = action.message);
+    clearTimeout(action.delay);
+    return (state = action.data.message);
   }
   return state;
 };
-export const setNoti = (content) => {
-  return {
-    type: 'NOTIFICATION',
-    message: content,
+export const setNoti = (content, delay) => {
+  return async (dispatch) => {
+    dispatch({
+      type: 'NOTIFICATION',
+      data: {
+        message: content,
+        delay: setTimeout(() => {
+          dispatch(clearNoti());
+        }, delay),
+      },
+    });
   };
 };
 export const clearNoti = () => {

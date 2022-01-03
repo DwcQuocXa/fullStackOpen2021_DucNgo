@@ -1,19 +1,15 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import { createNewAnecdote } from '../reducers/anecdoteReducer';
-import { clearNoti, setNoti } from '../reducers/notiReducer';
+import { setNoti } from '../reducers/notiReducer';
 
-function AnecdoteForm() {
-  const dispatch = useDispatch();
+function AnecdoteForm({ createNewAnecdote, setNoti }) {
   const addNewNote = (event) => {
     event.preventDefault();
     const content = event.target.note.value;
     event.target.note.value = '';
-    dispatch(createNewAnecdote(content));
-    dispatch(setNoti('New anecdote was add'));
-    setTimeout(() => {
-      dispatch(clearNoti());
-    }, 3000);
+    createNewAnecdote(content);
+    setNoti('New anecdote was add', 3000);
   };
   return (
     <div>
@@ -28,4 +24,16 @@ function AnecdoteForm() {
   );
 }
 
-export default AnecdoteForm;
+const mapStateToProps = () => {};
+
+const mapDispatchToState = {
+  createNewAnecdote,
+  setNoti,
+};
+
+const ConnectedAnecdoteForm = connect(
+  mapStateToProps,
+  mapDispatchToState
+)(AnecdoteForm);
+
+export default ConnectedAnecdoteForm;
