@@ -1,26 +1,21 @@
-const initialState = 'Notification';
-
-const notiReducer = (state = initialState, action) => {
-  if (action.type === 'VOTE_NOTI') {
-    const message = action.message;
-    return (state = message);
+const notiReducer = (state = '', action) => {
+  if (action.type === 'CLEAR NOTI') {
+    return (state = '');
   }
-  if (action.type === 'ADD') {
-    const message = action.message;
-    return (state = message);
+  if (action.type === 'NOTIFICATION') {
+    return (state = action.message);
   }
   return state;
 };
-export const voteNoti = (content) => {
+export const setNoti = (content) => {
   return {
-    type: 'VOTE_NOTI',
-    message: `You vote "${content}"`,
+    type: 'NOTIFICATION',
+    message: content,
   };
 };
-export const addNoti = (content) => {
+export const clearNoti = () => {
   return {
-    type: 'ADD',
-    message: `You add ${content}`,
+    type: 'CLEAR NOTI',
   };
 };
 export default notiReducer;

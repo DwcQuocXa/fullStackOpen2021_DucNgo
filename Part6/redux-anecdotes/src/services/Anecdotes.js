@@ -7,9 +7,18 @@ const getAll = async () => {
   return response.data;
 };
 const createNew = async (content) => {
-  const newAnecdote = { content };
+  const newAnecdote = { content, votes: 0 };
   const response = await axios.post(baseUrl, newAnecdote);
   return response.data;
 };
+
+const updateVote = async (updateContent) => {
+  console.log(updateContent);
+  const response = await axios.put(
+    `${baseUrl}/${updateContent.id}`,
+    updateContent
+  );
+  return response.data;
+};
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { getAll, createNew };
+export default { getAll, createNew, updateVote };

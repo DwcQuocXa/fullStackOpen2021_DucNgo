@@ -10,9 +10,7 @@ import anecdotesServices from './services/Anecdotes';
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    anecdotesServices
-      .getAll()
-      .then((anecdotes) => dispatch(initializeAnecdotes(anecdotes)));
+    dispatch(initializeAnecdotes());
   }, [dispatch]);
   return (
     <div>

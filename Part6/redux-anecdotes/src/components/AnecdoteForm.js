@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { createNewAnecdote } from '../reducers/anecdoteReducer';
-import { addNoti } from '../reducers/notiReducer';
+import { clearNoti, setNoti } from '../reducers/notiReducer';
 
 function AnecdoteForm() {
   const dispatch = useDispatch();
@@ -10,7 +10,10 @@ function AnecdoteForm() {
     const content = event.target.note.value;
     event.target.note.value = '';
     dispatch(createNewAnecdote(content));
-    dispatch(addNoti('New anecdote was add'));
+    dispatch(setNoti('New anecdote was add'));
+    setTimeout(() => {
+      dispatch(clearNoti());
+    }, 3000);
   };
   return (
     <div>
