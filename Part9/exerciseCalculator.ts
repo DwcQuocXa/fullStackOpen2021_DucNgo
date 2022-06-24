@@ -1,4 +1,3 @@
-
 interface Result {
     days: number;
     trainingDays: number;
@@ -15,7 +14,7 @@ const ratings = [
     "looks great. Keep it up",
 ];
 
-const calculateExercises = (exercises: number[], target: number): Result => {
+const exercisesCalculator = (exercises: number[], target: number): Result => {
     const days = exercises.length;
     const trainingDays = exercises.filter(exercise => exercise > 0).length
 
@@ -35,9 +34,9 @@ const calculateExercises = (exercises: number[], target: number): Result => {
     };
 };
 
-console.log(calculateExercises([3, 0, 2, 4.5, 0, 3, 1], 2));
+console.log(exercisesCalculator([3, 0, 2, 4.5, 0, 3, 1], 2));
 
-const calculateExercisesWithArguments = () => {
+/*const exercisesCalculatorWithArguments = () => {
     const [, , target, ...arguments] = process.argv;
 
     if (!target || arguments.length === 0) {
@@ -50,7 +49,22 @@ const calculateExercisesWithArguments = () => {
         throw "Exercises and target must be numbers";
     }
 
-    console.log(calculateExercises(exercises, parseFloat(target)));
+    console.log(exercisesCalculator(exercises, parseFloat(target)));
 };
 
-calculateExercisesWithArguments();
+exercisesCalculatorWithArguments();*/
+
+export const calculateExercisesWithArgumentsExpress = (target: any, inputExercises: any[]) => {
+    if (!target || inputExercises.length === 0) {
+        throw "parameters missing";
+    }
+
+    const exercises = inputExercises.map((inputExercise) => parseFloat(inputExercise));
+
+    if (isNaN(parseFloat(target)) || exercises.some((exercise) => isNaN(exercise))) {
+        throw "malformatted parameters";
+    }
+
+    console.log(exercisesCalculator(exercises, parseFloat(target)));
+    return exercisesCalculator(exercises, target);
+};

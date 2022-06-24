@@ -15,7 +15,7 @@
 
   console.log(bmiCalculator(180, 74));
 
-const calculateBmiWithArguments = () => {
+/*const calculateBmiWithArguments = () => {
   if (!process.argv[2] || !process.argv[3]) {
     throw "Both height and weight are required";
   }
@@ -30,4 +30,20 @@ const calculateBmiWithArguments = () => {
   console.log(bmiCalculator(height, weight));
 };
 
-calculateBmiWithArguments();
+calculateBmiWithArguments();*/
+
+export const calculateBmiWithArgumentsExpress = (argument1: any, argument2: any) => {
+  if (!argument1 || !argument2) {
+    throw "Both height and weight are required";
+  }
+
+  const height = parseFloat(argument1);
+  const weight = parseFloat(argument2);
+
+  if (isNaN(height) || isNaN(weight)) {
+    throw "malformatted parameters";
+  }
+
+  console.log(bmiCalculator(height, weight));
+  return bmiCalculator(height, weight)
+};
