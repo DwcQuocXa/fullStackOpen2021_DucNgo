@@ -6,7 +6,48 @@ enum Gender {
     female = "female",
     male = "male",
 }
-export interface Entry {}
+interface BaseEntry {
+    id: string;
+    description: string;
+    date: string;
+    specialist: string;
+    diagnosisCodes?: string[];
+}
+
+export enum HealthCheckRating {
+    "Healthy" = 0,
+    "LowRisk" = 1,
+    "HighRisk" = 2,
+    "CriticalRisk" = 3,
+}
+
+interface SickLeave {
+    startDate: string;
+    endDate: string;
+}
+
+interface OccupationalHealthcareEntry extends BaseEntry {
+    type: "OccupationalHealthcare";
+    employerName: string;
+    sickLeave: SickLeave;
+}
+
+interface Discharge {
+    date: string;
+    criteria: string;
+}
+interface HospitalEntry extends BaseEntry {
+    type: "Hospital";
+    id: string;
+    discharge: Discharge;
+}
+
+interface HealthCheckEntry extends BaseEntry {
+    type: "HealthCheck";
+    healthCheckRating: HealthCheckRating;
+}
+
+export type Entry = HospitalEntry | OccupationalHealthcareEntry | HealthCheckEntry;
 
 interface Patient {
     id: string;
