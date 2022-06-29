@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import {getDiagnoses} from "./routes/diagnose";
-import {getPatients, postPatient} from "./routes/patient";
+import {getPatientByID, getPatients, postPatient} from "./routes/patient";
 
 const app = express();
 app.use(express.json());
@@ -17,6 +17,7 @@ app.get("/api/diagnoses", getDiagnoses);
 
 app.get("/api/patients", getPatients);
 app.post("/api/patients", postPatient);
+app.get("/api/patients/:id", getPatientByID);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
