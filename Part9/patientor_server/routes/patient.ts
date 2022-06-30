@@ -49,6 +49,18 @@ interface HealthCheckEntry extends BaseEntry {
 
 export type Entry = HospitalEntry | OccupationalHealthcareEntry | HealthCheckEntry;
 
+export type newHealthCheckEntry = Omit<HealthCheckEntry, 'id'>;
+export type newHospitalEntry = Omit<HospitalEntry, 'id'>;
+export type newOccupationalHealthcareEntry = Omit<
+    OccupationalHealthcareEntry,
+    'id'
+    >;
+
+export type newEntry =
+    | newHealthCheckEntry
+    | newHospitalEntry
+    | newOccupationalHealthcareEntry;
+
 interface Patient {
     id: string;
     name: string;
@@ -85,6 +97,19 @@ const patientValidation = (object: any) : Omit<Patient, "id" | "entries"> => {
     return object as Patient
 }
 
+const isNewBaseEntry = (entry: any): entry is BaseEntry => {
+    if (
+        !entry ||
+        typeof entry.description !== 'string' ||
+        typeof entry.date !== 'string' ||
+        typeof entry.specialist !== 'string'
+    ) {
+        throw new Error('Incorrect description, date or specialist');
+    }
+
+    return entry;
+};
+
 export const getPatients = (_req: Request, res: Response) => {
     const patients: PublicPatient[] = [...(patientsJSON as Patient[])].map(({ id, name, dateOfBirth, gender: Gender, occupation }) => ({
         id,
@@ -116,6 +141,29 @@ export const getPatientByID = (req: Request, res: Response) => {
         const id = req.params.id;
         const patientById = [...(patientsJSON as Patient[])].find((patient) => patient.id === id);
         res.send(patientById)
+    } catch (error) {
+        res.send(error);
+    }
+};
+
+export const postEntry = (req: Request, res: Response) => {
+    try {
+        const patientID = req.params.id;
+        const newEntry: newEntry = req.body;
+        if (!isNewBaseEntry(newEntry)) {
+            throw new Error(`Not base entry ${newEntry}`);
+        }
+        const id = uuid();
+        const entryWithID = { ...newEntry, id };
+        [...(patientsJSON as Patient[])].forEach((patient) => {
+            if (patient.id === patientID) {
+                patient.entries.push(entryWithID);
+                return patient;
+            }
+            return patient;
+        });
+
+        res.send(entryWithID)
     } catch (error) {
         res.send(error);
     }
