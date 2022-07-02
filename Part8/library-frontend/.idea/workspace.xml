@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="49c743a4-36f1-4d73-b9b9-86c235184f65" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Authors.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Authors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Books.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Books.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/NewBook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NewBook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+    <list default="true" id="49c743a4-36f1-4d73-b9b9-86c235184f65" name="Changes" comment="8.17-8.20, 8.23, 8-24">
+      <change beforePath="$PROJECT_DIR$/../library-backend/library-backend.js" beforeDir="false" afterPath="$PROJECT_DIR$/../library-backend/library-backend.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../library-backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../library-backend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../library-backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../library-backend/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,28 +12,29 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2BLFs2uW5K9WUB3dze9ZYhSt3RX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -49,7 +46,24 @@
       <workItem from="1656677662742" duration="3274000" />
       <workItem from="1656691990454" duration="843000" />
       <workItem from="1656693091319" duration="1712000" />
+      <workItem from="1656695186935" duration="1206000" />
+      <workItem from="1656747778152" duration="6510000" />
     </task>
+    <task id="LOCAL-00001" summary="8.13-8.16">
+      <created>1656747943500</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1656747943500</updated>
+    </task>
+    <task id="LOCAL-00002" summary="8.17-8.20, 8.23, 8-24">
+      <created>1656754016267</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1656754016267</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -65,5 +79,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="8.13-8.16" />
+    <MESSAGE value="8.17-8.20, 8.23, 8-24" />
+    <option name="LAST_COMMIT_MESSAGE" value="8.17-8.20, 8.23, 8-24" />
   </component>
 </project>

@@ -8,7 +8,11 @@ const Authors = (props) => {
     return null
   }
 
-  const {show, authors, editAuthor} = props
+  const {show, authors, editAuthor, loading, token} = props
+
+  if (loading) {
+    return <div>loading...</div>
+  }
 
   const handleChange = (event) => {
     setName(event.target.value)
@@ -45,29 +49,30 @@ const Authors = (props) => {
         </tbody>
       </table>
 
-      <h2>Set birthyear</h2>
-      <form onSubmit={submit}>
+      {token ?
+          (<div><h2>Set birthyear</h2>
+        <form onSubmit={submit}>
         <div>
-          {/*name
+      {/*name
           <input
               value={name}
               onChange={({ target }) => setName(target.value)}
           />*/}
-          select author:
-          <select value={name} onChange={handleChange}>
-            {authors.map(a =>
-                <option value={a.name}>{a.name}</option>
-            )}
-          </select>
+        select author:
+        <select value={name} onChange={handleChange}>
+      {authors.map(a =>
+        <option value={a.name}>{a.name}</option>
+        )}
+        </select>
         </div>
         born
         <input
-            value={born}
-            onChange={({ target }) => setBorn(target.value)}
+        value={born}
+        onChange={({target}) => setBorn(target.value)}
         />
         <br />
         <button type='submit'>update author</button>
-      </form>
+        </form></div>) : (<div />)}
     </div>
   )
 }
